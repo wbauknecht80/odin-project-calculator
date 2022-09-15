@@ -1,10 +1,58 @@
-div {
-    display: flex;
-    border: 5px;
-    border-color: black;
-}
-
-.test {
+.container {
     display: flex;
     justify-content: center;
+    align-items: center;
+}
+
+.calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-evenly;
+    border: 5px;
+    border-color: black;
+    border-style: ridge;
+    background-color: grey;
+    width: 500px;
+    height: 400px;
+}
+
+.screen {
+    display: flex;
+    justify-content: space-around;
+    border: 5px;
+    border-color: black;
+    border-style: ridge;
+    background-color: antiquewhite;
+    margin: 15px;
+    height: 50px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 15px;
+}
+
+.numpad {
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.functions {
+    display: grid;
+    gap: 3px;
+    grid-template-columns: repeat(2, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    height: 50px;
+    width: 50px;
 }
