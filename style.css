@@ -1,0 +1,10 @@
+div {
+    display: flex;
+    border: 5px;
+    border-color: black;
+}
+
+.test {
+    display: flex;
+    justify-content: center;
+}
