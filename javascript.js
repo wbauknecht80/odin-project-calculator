@@ -1,4 +1,9 @@
-console.log('This is a test!')
+const calcButtons = document.querySelectorAll('button');
+const display = document.querySelector('.display');
+let displayNumber = '';
+var screen = document.getElementById('display')
+
+
 
 function add(a, b) {
     var c = a + b;
@@ -20,8 +25,13 @@ function divide(a,b){
     return c;
 }
 
+function exponent(a,b){
+    var c = Math.pow(a, b)
+    return c
+}
+
 function operate(operator, a, b) {
-    var operator = prompt("Add, Subtract, Multiply, or Divide?");
+    var operator = prompt("Add, Subtract, Multiply, Divide, or Exponent?");
     var x = prompt("First number?");
     var y = prompt("Second number?");
     var a = parseInt(x);
@@ -34,5 +44,8 @@ function operate(operator, a, b) {
         return multiply(a, b);
     } else if (operator == "Divide") {
         return divide(a, b);
+    } else if (operator == "Exponent") {
+        return exponent(a, b)
     }
+    screen.appendChild(result)
 }
