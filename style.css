@@ -19,15 +19,30 @@
 
 .display {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     border: 5px;
     border-color: black;
     border-style: ridge;
     background-color: antiquewhite;
     margin: 15px;
-    height: 50px;
+    height: auto;
 }
 
+.operationDisplay {
+    display: flex;
+    justify-content: right;
+    font-size: x-large;
+    font-weight: bolder;
+    margin-right: 10px;
+}
+
+.resultantDisplay {
+    display: flex;
+    justify-content: right;
+    font-size: medium;
+    margin-right: 10px;
+}
 .buttons {
     display: flex;
     justify-content: space-evenly;

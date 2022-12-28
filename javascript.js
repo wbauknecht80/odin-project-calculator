@@ -1,9 +1,18 @@
 const calcButtons = document.querySelectorAll('button');
 const display = document.querySelector('.display');
 let displayNumber = '';
-var screen = document.getElementById('display')
 
+const numButtons = document.getElementsByClassName('number');
+const operationButtons = document.getElementsByClassName('operator');
+const equalsButton = document.getElementById('equal')
+const clearAllButton = document.getElementById('clearall')
+const deleteButton = document.getElementById('delete')
+const operationDisplay = document.getElementsByClassName('operationDisplay');
+const resultantDisplay = document.getElementsByClassName('resultantDisplay');
 
+function appendNumber(number) {
+
+}
 
 function add(a, b) {
     var c = a + b;
@@ -47,5 +56,10 @@ function operate(operator, a, b) {
     } else if (operator == "Exponent") {
         return exponent(a, b)
     }
-    screen.appendChild(result)
 }
+
+let fillData = () => {
+    let ele = document.getElementById('display');
+    let node = operate()
+}
+
