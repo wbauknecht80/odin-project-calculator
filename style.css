@@ -29,13 +29,13 @@
     height: auto;
 }
 
-.operationDisplay {
+/*.operationDisplay {
     display: flex;
     justify-content: right;
     font-size: x-large;
     font-weight: bolder;
     margin-right: 10px;
-}
+}*/
 
 .resultantDisplay {
     display: flex;
@@ -67,7 +67,7 @@
     align-items: center;
 }
 
-.number, .operator {
+.number, .operator, .auxiliary {
     height: 50px;
     width: 50px;
 }
