@@ -42,7 +42,6 @@ function exponent(a,b){
 }
 
 
-
 document.querySelectorAll('.number').forEach(item => {
     item.addEventListener('click', event => {
         updateVars(item.textContent);
@@ -50,7 +49,11 @@ document.querySelectorAll('.number').forEach(item => {
 })
 
 function updateVars(value){
-    if (operatorSpan.textContent == '') {
+    if (operatorSpan.textContent !== '+' &&
+        operatorSpan.textContent !== '-' &&
+        operatorSpan.textContent !== '*' &&
+        operatorSpan.textContent !== '/') {
+
         firstVarSpan.textContent += value;
     } else {
         secondVarSpan.textContent += value;
@@ -65,7 +68,7 @@ document.querySelectorAll('.operator').forEach(item => {
 
 
 function updateOperator(value){
-    if (firstVarSpan != '' && secondVarSpan == '') {
+    if (firstVarSpan !== '' && secondVarSpan == '') {
         operatorSpan.textContent += value; 
     }
 }
