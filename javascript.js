@@ -10,7 +10,7 @@ const clearAllButton = document.getElementById('clearall')
 const deleteButton = document.getElementById('delete')
 
 const operationDisplay = document.getElementsByClassName('operationDisplay');
-const resultantDisplay = document.getElementsByClassName('resultantDisplay');
+const answerDisplay = document.getElementById('answer');
 
 const firstVarSpan = document.getElementById('firstVar');
 const operatorSpan = document.getElementById('operatorSign');
@@ -86,7 +86,7 @@ function auxiliaryCommand(value){
         firstVarSpan.textContent = '';
         operatorSpan.textContent = '';
         secondVarSpan.textContent = '';
-        resultantDisplay.textContent = '';
+        answerDisplay.textContent = '';
     }
 }
 
@@ -99,8 +99,7 @@ document.querySelectorAll('.equal').forEach(item => {
 function updateResultantDisplay(value) {
     let answerAsNum = solveProblem();
     let answerAsString = answerAsNum.toString();
-    alert(answerAsString)
-    resultantDisplay.textContent = answerAsString;
+    answerDisplay.append(answerAsString);
 }
 
 function solveProblem() {
