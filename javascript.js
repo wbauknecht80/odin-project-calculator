@@ -16,6 +16,8 @@ const firstVarSpan = document.getElementById('firstVar');
 const operatorSpan = document.getElementById('operatorSign');
 const secondVarSpan = document.getElementById('secondVar');
 
+
+
 function add(a, b) {
     var c = a + b;
     return c;
@@ -49,11 +51,7 @@ document.querySelectorAll('.number').forEach(item => {
 })
 
 function updateVars(value){
-    if (operatorSpan.textContent !== '+' &&
-        operatorSpan.textContent !== '-' &&
-        operatorSpan.textContent !== '*' &&
-        operatorSpan.textContent !== '/') {
-
+    if (operatorSpan.childNodes.length === 0) {
         firstVarSpan.textContent += value;
     } else {
         secondVarSpan.textContent += value;
@@ -68,8 +66,9 @@ document.querySelectorAll('.operator').forEach(item => {
 
 
 function updateOperator(value){
-    if (firstVarSpan !== '' && secondVarSpan == '') {
+    if (firstVarSpan.childNodes.length !== 0 && operatorSpan.childNodes.length === 0) {
         operatorSpan.textContent += value; 
+    } else if (firstVarSpan.childNodes.length !== 0 && operatorSpan.childNodes.length !== 0) {
+        operatorSpan.textContent = value;
     }
 }
-
