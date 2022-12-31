@@ -13,8 +13,8 @@
     border-color: black;
     border-style: ridge;
     background-color: grey;
-    width: 500px;
-    height: 400px;
+    min-width: 600px;
+    min-height: 500px;
 }
 
 .display {
@@ -49,6 +49,10 @@
     justify-content: right;
     font-size: medium;
     margin-right: 10px;
+    border: 5px;
+    border-style: outset;
+    min-width: 25px;
+    min-height: 30px;
 }
 .buttons {
     display: flex;
@@ -74,7 +78,7 @@
     align-items: center;
 }
 
-.number, .operator, .auxiliary {
+.number, .operator, .auxiliary, .equal {
     height: 50px;
     width: 50px;
 }

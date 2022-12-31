@@ -19,28 +19,28 @@ const secondVarSpan = document.getElementById('secondVar');
 
 
 function add(a, b) {
-    var c = a + b;
-    return c;
+    var resultant = a + b;
+    return resultant;
 }
 
 function subtract(a, b){
-    var c = a - b;
-    return c;
+    var resultant = a - b;
+    return resultant;
 }
 
 function multiply(a, b){
-    var c = a * b;
-    return c;
+    var resultant = a * b;
+    return resultant;
 }
 
 function divide(a,b){
-    var c = a / b;
-    return c;
+    var resultant = a / b;
+    return resultant;
 }
 
 function exponent(a,b){
-    var c = Math.pow(a, b);
-    return c;
+    var resultant = Math.pow(a, b);
+    return resultant;
 }
 
 
@@ -72,3 +72,50 @@ function updateOperator(value){
         operatorSpan.textContent = value;
     }
 }
+
+document.querySelectorAll('.auxiliary').forEach(item => {
+    item.addEventListener('click', event => {
+        auxiliaryCommand(item.textContent);
+    })
+})
+
+function auxiliaryCommand(value){
+    if (value === 'DEL') {
+        
+    } else if (value === 'AC') {
+        firstVarSpan.textContent = '';
+        operatorSpan.textContent = '';
+        secondVarSpan.textContent = '';
+        resultantDisplay.textContent = '';
+    }
+}
+
+document.querySelectorAll('.equal').forEach(item => {
+    item.addEventListener('click', event => {
+        updateResultantDisplay()
+    })
+})
+
+function updateResultantDisplay(value) {
+    let answerAsNum = solveProblem();
+    let answerAsString = answerAsNum.toString();
+    alert(answerAsString)
+    resultantDisplay.textContent = answerAsString;
+}
+
+function solveProblem() {
+
+    var firstVar = Number(firstVarSpan.textContent);
+    var operator = operatorSpan.textContent;
+    var secondVar = Number(secondVarSpan.textContent);
+
+    if (operator == '+') {
+        return add(firstVar, secondVar);
+    } else if (operator == '-') {
+        return subtract(firstVar, secondVar);
+    } else if (operator == '*') {
+        return multiply(firstVar, secondVar);
+    } else if (operator == '/') {
+        return divide(firstVar, secondVar);
+    } 
+} 
