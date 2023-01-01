@@ -66,7 +66,11 @@ document.querySelectorAll('.operator').forEach(item => {
 
 
 function updateOperator(value){
-    if (firstVarSpan.childNodes.length !== 0 && operatorSpan.childNodes.length === 0) {
+    if (answerDisplay.childNodes.length !== 0 && operatorSpan.childNodes.length === 0) {
+        operatorSpan.textContent += value;
+    } else if (answerDisplay.childNodes.length !== 0 && operatorSpan.childNodes.length !== 0) {
+        operatorSpan.textContent = value;
+    } else if (firstVarSpan.childNodes.length !== 0 && operatorSpan.childNodes.length === 0) {
         operatorSpan.textContent += value; 
     } else if (firstVarSpan.childNodes.length !== 0 && operatorSpan.childNodes.length !== 0) {
         operatorSpan.textContent = value;
@@ -105,6 +109,9 @@ document.querySelectorAll('.equal').forEach(item => {
 function updateResultantDisplay(value) {
     let answerAsNum = solveProblem();
     answerDisplay.append(answerAsNum);
+    firstVarSpan.textContent = '';
+    operatorSpan.textContent = '';
+    secondVarSpan.textContent = '';
 }
 
 function solveProblem() {
@@ -112,6 +119,11 @@ function solveProblem() {
     var firstVar = Number(firstVarSpan.textContent);
     var operator = operatorSpan.textContent;
     var secondVar = Number(secondVarSpan.textContent);
+
+    if (answerDisplay.childNodes.length !== 0){
+        var firstVar = Number(answerDisplay.textContent);
+        answerDisplay.textContent = '';
+    }
 
     if (operator == '+') {
         return add(firstVar, secondVar);
