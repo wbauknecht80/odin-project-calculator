@@ -1,3 +1,5 @@
+/* DECLARE VARIABLES -- MIGHT HAVE REDUNDANCIES */
+
 const calcButtons = document.querySelectorAll('button');
 
 const display = document.querySelector('.display');
@@ -16,7 +18,7 @@ const firstVarSpan = document.getElementById('firstVar');
 const operatorSpan = document.getElementById('operatorSign');
 const secondVarSpan = document.getElementById('secondVar');
 
-
+/* OPERATOR FUNCTIONS */
 
 function add(a, b) {
     var resultant = a + b;
@@ -43,12 +45,15 @@ function exponent(a,b){
     return resultant;
 }
 
+/* HANDLES NUMBER BUTTONS */
 
 document.querySelectorAll('.number').forEach(item => {
     item.addEventListener('click', event => {
         updateVars(item.textContent);
     })
 })
+
+/* CHECKS WHICH SIDE OF THE OPERATOR SIGN TO ASSIGN NUMBER */
 
 function updateVars(value){
     if (operatorSpan.childNodes.length === 0) {
@@ -57,13 +62,16 @@ function updateVars(value){
         secondVarSpan.textContent += value;
     }
 } 
-        
+
+/* HANDLES OPERATOR BUTTONS */
+
 document.querySelectorAll('.operator').forEach(item => {
     item.addEventListener('click', event => {
         updateOperator(item.textContent);
     })
 })
 
+/* CHECKS IF A VARIABLE HAS BEEN ASSIGNED, REPLACES ANY CURRENT EXISTING OPERATOR ON ANOTHER CLICK */
 
 function updateOperator(value){
 
@@ -82,11 +90,15 @@ function updateOperator(value){
     }
 }
 
+/* HANDLES DEL AND AC BUTTONS */
+
 document.querySelectorAll('.auxiliary').forEach(item => {
     item.addEventListener('click', event => {
         auxiliaryCommand(item.textContent);
     })
 })
+
+/* DEL DELETES FROM RIGHT TO LEFT, AC CLEARS EVERYTHING */
 
 function auxiliaryCommand(value){
     if (value === 'DEL') {
@@ -105,6 +117,7 @@ function auxiliaryCommand(value){
         let noError = true
     }}
 
+/* HANDLES EQUAL SIGN */
 
 document.querySelectorAll('.equal').forEach(item => {
     item.addEventListener('click', event => {
@@ -112,18 +125,29 @@ document.querySelectorAll('.equal').forEach(item => {
     })
 })
 
-function updateResultantDisplay(value) {
-    let answerAsNum = solveProblem();
-    let answerAsString = answerAsNum.toString();   
+/* CALLS FUNCTION TO SOLVE, UPDATES DISPLAY AND CHECKS FOR ERRORS */
 
-    if (answerAsNum === 'undefined') {
-        return
-    } else {
-        answerDisplay.append(answerAsNum);
-        firstVarSpan.textContent = '';
-        operatorSpan.textContent = '';
-        secondVarSpan.textContent = '';
-}}
+function updateResultantDisplay(value) {
+
+    if (firstVarSpan.childNodes.length !== 0 && operatorSpan.childNodes.length !== 0 
+        && secondVarSpan.childNodes.length !== 0) {
+        let answerAsNum = solveProblem();
+        let answerAsString = answerAsNum.toString();   
+
+        if (answerAsString === 'Infinity') {
+            firstVarSpan.textContent = '';
+            operatorSpan.textContent = '';
+            secondVarSpan.textContent = '';
+        } else {
+            answerDisplay.append(answerAsNum);
+            firstVarSpan.textContent = '';
+            operatorSpan.textContent = '';
+            secondVarSpan.textContent = '';
+    }
+} 
+}
+
+/* CALLS OPERATOR FUNCTIONS AND CREATES NECCESARY ERROR MESSAGES */
 
 function solveProblem() {
 
@@ -140,7 +164,6 @@ function solveProblem() {
     if (operator === '/' && secondVar === 0) {
         answerDisplay.textContent = "Error: Can't divide by zero";
         let noError = false;
-        return
     }
     
     if (operator == '+') {
@@ -155,3 +178,10 @@ function solveProblem() {
         return exponent(firstVar, secondVar);
     }
 } 
+
+/* 
+FIX DECIMAL BUTTON
+FIX NEGATIVE SIGN
+ROUND DECIMALS
+BUG WITH DIV BY ZERO ERROR NOT CLEARING OPERATOR AND SECOND VAR (temporarily fixed--need to make a catch-all for bugs)
+*/
