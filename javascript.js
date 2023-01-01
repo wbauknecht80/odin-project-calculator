@@ -81,14 +81,20 @@ document.querySelectorAll('.auxiliary').forEach(item => {
 
 function auxiliaryCommand(value){
     if (value === 'DEL') {
-        
-    } else if (value === 'AC') {
+        if (secondVarSpan.childNodes.length !== 0 ) {
+                secondVarSpan.textContent = secondVarSpan.textContent.slice(0, -1)
+            } else if (operatorSpan.childNodes.length !==0) {
+                operatorSpan.textContent = operatorSpan.textContent.slice(0, -1)
+            } else if (firstVarSpan.childNodes.length !== 0) {
+                firstVarSpan.textContent = firstVarSpan.textContent.slice(0, -1)
+            }
+        } else if (value === 'AC') {
         firstVarSpan.textContent = '';
         operatorSpan.textContent = '';
         secondVarSpan.textContent = '';
         answerDisplay.textContent = '';
-    }
-}
+    }}
+
 
 document.querySelectorAll('.equal').forEach(item => {
     item.addEventListener('click', event => {
@@ -98,8 +104,7 @@ document.querySelectorAll('.equal').forEach(item => {
 
 function updateResultantDisplay(value) {
     let answerAsNum = solveProblem();
-    let answerAsString = answerAsNum.toString();
-    answerDisplay.append(answerAsString);
+    answerDisplay.append(answerAsNum);
 }
 
 function solveProblem() {
@@ -116,5 +121,7 @@ function solveProblem() {
         return multiply(firstVar, secondVar);
     } else if (operator == '/') {
         return divide(firstVar, secondVar);
-    } 
+    } else if (operator == '^') {
+        return exponent(firstVar, secondVar)
+    }
 } 
