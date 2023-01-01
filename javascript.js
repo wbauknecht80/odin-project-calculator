@@ -66,6 +66,11 @@ document.querySelectorAll('.operator').forEach(item => {
 
 
 function updateOperator(value){
+
+    if (answerDisplay.textContent === "Error: Can't divide by zero") {
+        answerDisplay.textContent = '';
+    }
+
     if (answerDisplay.childNodes.length !== 0 && operatorSpan.childNodes.length === 0) {
         operatorSpan.textContent += value;
     } else if (answerDisplay.childNodes.length !== 0 && operatorSpan.childNodes.length !== 0) {
@@ -86,45 +91,58 @@ document.querySelectorAll('.auxiliary').forEach(item => {
 function auxiliaryCommand(value){
     if (value === 'DEL') {
         if (secondVarSpan.childNodes.length !== 0 ) {
-                secondVarSpan.textContent = secondVarSpan.textContent.slice(0, -1)
+                secondVarSpan.textContent = secondVarSpan.textContent.slice(0, -1);
             } else if (operatorSpan.childNodes.length !==0) {
-                operatorSpan.textContent = operatorSpan.textContent.slice(0, -1)
+                operatorSpan.textContent = operatorSpan.textContent.slice(0, -1);
             } else if (firstVarSpan.childNodes.length !== 0) {
-                firstVarSpan.textContent = firstVarSpan.textContent.slice(0, -1)
+                firstVarSpan.textContent = firstVarSpan.textContent.slice(0, -1);
             }
         } else if (value === 'AC') {
         firstVarSpan.textContent = '';
         operatorSpan.textContent = '';
         secondVarSpan.textContent = '';
         answerDisplay.textContent = '';
+        let noError = true
     }}
 
 
 document.querySelectorAll('.equal').forEach(item => {
     item.addEventListener('click', event => {
-        updateResultantDisplay()
+        updateResultantDisplay();
     })
 })
 
 function updateResultantDisplay(value) {
     let answerAsNum = solveProblem();
-    answerDisplay.append(answerAsNum);
-    firstVarSpan.textContent = '';
-    operatorSpan.textContent = '';
-    secondVarSpan.textContent = '';
-}
+    let answerAsString = answerAsNum.toString();   
+
+    if (answerAsNum === 'undefined') {
+        return
+    } else {
+        answerDisplay.append(answerAsNum);
+        firstVarSpan.textContent = '';
+        operatorSpan.textContent = '';
+        secondVarSpan.textContent = '';
+}}
 
 function solveProblem() {
 
     var firstVar = Number(firstVarSpan.textContent);
     var operator = operatorSpan.textContent;
     var secondVar = Number(secondVarSpan.textContent);
+    let noError = true
 
     if (answerDisplay.childNodes.length !== 0){
         var firstVar = Number(answerDisplay.textContent);
         answerDisplay.textContent = '';
     }
 
+    if (operator === '/' && secondVar === 0) {
+        answerDisplay.textContent = "Error: Can't divide by zero";
+        let noError = false;
+        return
+    }
+    
     if (operator == '+') {
         return add(firstVar, secondVar);
     } else if (operator == '-') {
@@ -134,6 +152,6 @@ function solveProblem() {
     } else if (operator == '/') {
         return divide(firstVar, secondVar);
     } else if (operator == '^') {
-        return exponent(firstVar, secondVar)
+        return exponent(firstVar, secondVar);
     }
 } 
